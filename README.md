@@ -1,0 +1,44 @@
+# Ampere Vision Archival
+### RTX 3080 Technical Investigation & Historical AI Capabilities
+
+![Logo](gddr6x_signaling.png)
+
+## 📋 Project Overview
+This repository contains a technical investigation into the NVIDIA Ampere architecture, specifically the **RTX 3080 (Asus TUF Gaming)**. It documents the "High Power Idle" phenomenon observed in multi-monitor and compute-active environments, and provides historical context for its role in AI and Computer Vision clusters circa 2020-2022.
+
+## 🔍 Core Insights
+
+### 1. GPU Power Dynamics
+The RTX 3080 can pull >100W even at 0% core utilization. This is due to P-state locking from active CUDA contexts (like Ollama) and memory clock retention.
+
+![Power Dynamics](gpu_power_dynamics.png)
+
+### 2. GDDR6X & PAM4 Signaling
+The fundamental shift from GDDR6 to GDDR6X involved moving from binary NRZ signaling to 4-level Pulse Amplitude Modulation (PAM4). While this doubled bandwidth, it introduced a significant idle power baseline due to precision voltage requirements.
+
+![GDDR6X Signaling](gddr6x_signaling.png)
+
+### 3. The "Memory Wall" & Tensor Cores
+Ampere's 3rd Gen Tensor Cores require massive data throughput to remain saturated. GDDR6X provides the >760 GB/s bandwidth necessary to feed these execution units for high-resolution vision tasks.
+
+![Memory Wall](memory_wall.png)
+
+### 4. Multi-GPU Vision Clusters (2020-2022)
+A "battery" of Asus TUF 3080s formed the core of prosumer AI clusters. Leveraging PCIe Gen 4.0 and "Mil-Spec" cooling, these rigs were used for training YOLOv5, NeRF, and Vision Transformers.
+
+![Ampere Cluster](ampere_cluster.png)
+
+### 5. Multi-Monitor Sync Constraints
+Driving multiple displays with asynchronous timings prevents the memory from downclocking to save power, as frequency shifts during a refresh cycle would cause visible flickering.
+
+![Multi-Monitor Sync](multi_monitor_sync.png)
+
+## 🛠 Technical Specifications (Asus TUF RTX 3080)
+- **Architecture:** Ampere (GA102)
+- **Memory:** 10GB/12GB GDDR6X
+- **Bandwidth:** ~760 - 912 GB/s
+- **Signaling:** PAM4
+- **Build:** Military-Grade Capacitors, Dual Ball Fan Bearings, Aluminum Shroud
+
+## 📄 License
+MIT
