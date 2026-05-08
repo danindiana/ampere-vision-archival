@@ -36,15 +36,12 @@ Driving multiple displays with asynchronous timings prevents the memory from dow
 ## ⚡ Optimizations & Efficiency
 A key finding of this investigation was the high idle power draw (~120W) of the RTX 3080 in multi-monitor setups. We implemented a "Clock Locking" strategy to resolve this.
 
+**Detailed deep-dive available in: [/optimizations](/optimizations)**
+
 ### GPU Power Toggle Script
 Included in this repo is `gpu_power_toggle.sh`, a utility to switch the RTX 3080 between two profiles:
-- **ECO Mode (`./gpu_power_toggle.sh eco`):** 
-    - Locks VRAM to 405 MHz and Core to 210 MHz.
-    - Reduces idle power draw from **~122W to ~44W**.
-    - Savings: **~78 Watts**.
-- **PERFORMANCE Mode (`./gpu_power_toggle.sh perf`):**
-    - Resets all clocks to automatic management.
-    - Restores full 340W power limit for CUDA/AI workloads.
+- **ECO Mode (`./gpu_power_toggle.sh eco`):** ~44W Idle Power.
+- **PERFORMANCE Mode (`./gpu_power_toggle.sh perf`):** Full 340W and Automatic management.
 
 ## 🛠 Technical Specifications (Asus TUF RTX 3080)
 - **Architecture:** Ampere (GA102)
