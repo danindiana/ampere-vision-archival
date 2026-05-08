@@ -43,6 +43,16 @@ Included in this repo is `gpu_power_toggle.sh`, a utility to switch the RTX 3080
 - **ECO Mode (`./gpu_power_toggle.sh eco`):** ~44W Idle Power.
 - **PERFORMANCE Mode (`./gpu_power_toggle.sh perf`):** Full 340W and Automatic management.
 
+### Boot Persistence
+To ensure these savings survive a reboot, we have implemented a systemd service:
+- **Service File:** `gpu-eco-mode.service` (Included in root)
+- **Deployment:**
+  ```bash
+  sudo cp gpu-eco-mode.service /etc/systemd/system/
+  sudo systemctl daemon-reload
+  sudo systemctl enable gpu-eco-mode.service
+  ```
+
 ## 🛠 Technical Specifications (Asus TUF RTX 3080)
 - **Architecture:** Ampere (GA102)
 - **Memory:** 10GB/12GB GDDR6X

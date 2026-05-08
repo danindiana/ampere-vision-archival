@@ -15,6 +15,13 @@ The `gpu_power_toggle.sh` script (located in the root) manages the transitions b
 
 ![Optimization Logic](assets/optimization_logic.png)
 
+### ♻️ Boot Persistence
+NVIDIA settings are volatile by default. To ensure the ECO state persists across reboots, we utilize a systemd service unit.
+
+![Boot Persistence](assets/boot_persistence.png)
+
+The service `gpu-eco-mode.service` is configured to run after `nvidia-persistenced.service` is ready, ensuring the driver state is stable before applying clock locks.
+
 ### 🛠 Applied Commands
 1. **Persistence Daemon:** `sudo systemctl enable --now nvidia-persistenced`
 2. **Persistence Mode:** `sudo nvidia-smi -pm 1 -i 1`
