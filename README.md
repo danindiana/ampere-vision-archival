@@ -53,6 +53,20 @@ To ensure these savings survive a reboot, we have implemented a systemd service:
   sudo systemctl enable gpu-eco-mode.service
   ```
 
+### 🐕 Automated Watchdog
+For seamless management, we've included a watchdog daemon that toggles modes based on active load:
+- **Service File:** `tools/gpu-watchdog.service`
+- **Logic:** Switches to `perf` when CUDA/GPU utilization is detected; reverts to `eco` after 60s of idle.
+- **Deployment:**
+  ```bash
+  sudo cp tools/gpu-watchdog.service /etc/systemd/system/
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now gpu-watchdog.service
+  ```
+
+## 📊 Monitoring Dashboard
+Included in `tools/gpu_dashboard.py` is a colorized CLI dashboard specifically tuned for dual-GPU (Ampere/Blackwell) setups, highlighting P-states and power transitions.
+
 ## 🛠 Technical Specifications (Asus TUF RTX 3080)
 - **Architecture:** Ampere (GA102)
 - **Memory:** 10GB/12GB GDDR6X
