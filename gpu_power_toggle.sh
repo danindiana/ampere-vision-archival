@@ -9,11 +9,11 @@ GPU_ID_5080=0
 
 # RTX 5080: cap power to reduce thermals (default 360W, range 250-400W)
 RTX5080_ECO_POWER=300
-RTX5080_PERF_POWER=360
+RTX5080_PERF_POWER=300
 
 # RTX 3080: cap power to reduce thermals (default 340W, range 100-375W)
 RTX3080_ECO_POWER=300
-RTX3080_PERF_POWER=340
+RTX3080_PERF_POWER=300
 
 if [ "$1" == "eco" ]; then
     echo "Switching to ECO mode..."
